@@ -75,11 +75,10 @@ export function Counter() {
         </button>
       </div>
       <div>
-        <ul>
-          {users?.map(user => <li>{user.email}</li>)}
-        </ul>
+        <select>
+          {users?.map(user => <option>{user.email}</option>)}
+        </select>
       </div>
-
     </div>
   );
 }
