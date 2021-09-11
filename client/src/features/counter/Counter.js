@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   decrement,
@@ -15,6 +15,19 @@ export function Counter() {
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
   const incrementValue = Number(incrementAmount) || 0;
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+
+    fetchUsers();
+
+    async function fetchUsers() {
+      const response = await fetch('http://localhost:5000/api/user');
+      const responseJson = await response.json();
+      setUsers(responseJson.users);
+    }
+
+  }, []);
 
   return (
     <div>
@@ -61,6 +74,12 @@ export function Counter() {
           Add If Odd
         </button>
       </div>
+      <div>
+        <ul>
+          {users?.map(user => <li>{user.email}</li>)}
+        </ul>
+      </div>
+
     </div>
   );
 }
