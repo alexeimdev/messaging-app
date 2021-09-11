@@ -18,15 +18,12 @@ export function Counter() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-
     fetchUsers();
-
     async function fetchUsers() {
       const response = await fetch('http://localhost:5000/api/user');
       const responseJson = await response.json();
       setUsers(responseJson.users);
     }
-
   }, []);
 
   return (
