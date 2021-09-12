@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './Users.module.css';
 
 export function Users() {
     const [users, setUsers] = useState([]);
@@ -13,8 +14,8 @@ export function Users() {
     }, []);
 
     return (
-        <div>
-            <select>
+        <div className={styles.users}>
+            <select className={styles.dropdown}>
                 {users?.map(user => <option>{user.email}</option>)}
             </select>
         </div>
