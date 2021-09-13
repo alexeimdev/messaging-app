@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-//const db = require('../db/db');
 const usersDbStub = require('../db/stub/users.json');
 const userModel = require('../models/user');
 
