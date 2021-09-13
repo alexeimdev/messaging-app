@@ -8,10 +8,10 @@ user.get('/', async (req, res) => {
     res.send(usersDb);
 })
 
-user.get('/test', (req, res) => {
+user.get('/test', async (req, res) => {
     const conn = mongoose.createConnection("mongodb+srv://alexeimdev:<password>@cluster0.dopsm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
     const userModel = conn.model("User", require('../models/schemas/user'))
-    const users = userModel.find();
+    const users = await userModel.find();
 
     res.end();
 })
