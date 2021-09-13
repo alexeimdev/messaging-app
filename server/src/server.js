@@ -7,6 +7,7 @@ const api = require('./api');
 const httpPort = process.env.HTTP_PORT || 5000;
 const dbUri = process.env.MONGODB_CONNECTION || "mongodb+srv://alexeimdev:reason10@cluster0.dopsm.mongodb.net/messaging-app?retryWrites=true&w=majority";
 
+// connecting to db
 try {
 	console.log('[server]', 'trying to connect to mongodb...');
 	mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
