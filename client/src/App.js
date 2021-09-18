@@ -4,7 +4,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { Counter } from './features/counter/Counter';
 import { UsersPage } from './pages/usersPage';
 import { CounterPage } from './pages/counterPage';
 
