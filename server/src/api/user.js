@@ -31,8 +31,7 @@ user.get('/bulk/:results', async (req, res) => {
     if (results) {
         const bulkResult = await userModel.collection.insertMany(results);
         console.log('[api.user.bulk:result]', 'bulkResult', bulkResult);
-        console.log('[api.user.bulk:result]', 'results', results);
-        res.send(results);
+        res.send(bulkResult);
     } else {
         res.sendStatus(500);
     }

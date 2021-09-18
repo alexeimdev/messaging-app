@@ -3,7 +3,6 @@ import styles from './Users.module.css';
 
 export function Users() {
     const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState("");
 
     useEffect(() => {
         fetchUsers();
@@ -12,20 +11,15 @@ export function Users() {
             const response = await fetch('/api/user');
             const users = await response.json();
             setUsers(users);
-            setSelectedUser(users[0].email);
         }
     }, []);
 
-    function handleSelectUserChange (e) {
-        setSelectedUser(e.target.value);
-    }
-
     return (
         <div className={styles.users}>
-            <select onChange={handleSelectUserChange} className={styles.dropdown} >
+            <select className={styles.dropdown}>
                 {users?.map(user => <option>{user.email}</option>)}
             </select>
-            <h2>{selectedUser}</h2>
+            <div>{users.length} users</div>
         </div>
     )
 }
