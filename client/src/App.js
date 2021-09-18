@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { Counter } from './features/counter/Counter';
 import { UsersPage } from './pages/usersPage';
+import { CounterPage } from './pages/counterPage';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <UsersPage />
         </Route>
         <Route path="/counter">
-          <Counter />
+          <CounterPage />
         </Route>
       </Switch>
     </Router>
