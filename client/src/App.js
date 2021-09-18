@@ -5,7 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import { Counter } from './features/counter/Counter';
-import { Users } from './features/users/Users';
+import { UsersPage } from './pages/usersPage';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route path="/" exact render={() => <h1>Home</h1>} />
         <Route path="/users">
-          <Users />
+          <UsersPage />
         </Route>
         <Route path="/counter">
           <Counter />
