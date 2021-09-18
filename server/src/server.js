@@ -2,10 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
+const fetch = require('node-fetch');
 const api = require('./api');
 
 const httpPort = process.env.HTTP_PORT || 5000;
 const dbUri = process.env.MONGODB_CONNECTION || "mongodb+srv://alexeimdev:reason10@cluster0.dopsm.mongodb.net/messaging-app?retryWrites=true&w=majority";
+
+// global fetch
+if (!globalThis.fetch) {
+	globalThis.fetch = fetch;
+}
 
 // connecting to db
 try {
