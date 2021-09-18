@@ -6,12 +6,6 @@ const userModel = require('../models/user');
 const user = express.Router();
 
 user.get('/', async (req, res) => {
-    const users = usersDbStub.users;
-    console.log('[api.user]', 'users', users);
-    res.send(users);
-})
-
-user.get('/test', async (req, res) => {
     try {
         const users = await userModel.find();
         console.log('[api.user.test]', 'users', users);
@@ -20,6 +14,12 @@ user.get('/test', async (req, res) => {
         console.error('[api.user.test]', error);
         res.sendStatus(500);
     }
+})
+
+user.get('/stub', async (req, res) => {
+    const users = usersDbStub.users;
+    console.log('[api.user.stub]', 'users', users);
+    res.send(users);
 })
 
 user.get('/:id', (req, res) => {
