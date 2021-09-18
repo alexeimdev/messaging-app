@@ -22,6 +22,16 @@ user.get('/stub', async (req, res) => {
     res.send(users);
 })
 
+user.get('/bulk/:results', async (req, res) => {
+    const url = 'https://randomuser.me/api/?page=1&results=' + req.params.results;
+    const response = await fetch(url);
+    const responseJson = await response.json();
+    const results = responseJson.results;
+
+    console.log('[api.user.bulk:result]', 'results', results);
+    res.send(results);
+})
+
 user.get('/:id', (req, res) => {
     const user = usersDbStub.users.find(x => x.email == req.params.id);
     console.debug('[api.user.id]', 'user', user);
