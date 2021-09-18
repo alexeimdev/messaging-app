@@ -28,8 +28,14 @@ user.get('/bulk/:results', async (req, res) => {
     const responseJson = await response.json();
     const results = responseJson.results;
 
-    console.log('[api.user.bulk:result]', 'results', results);
-    res.send(results);
+    if (results) {
+        const bulkResult = await userModel.collection.insertMany(results);
+        console.log('[api.user.bulk:result]', 'bulkResult', bulkResult);
+        console.log('[api.user.bulk:result]', 'results', results);
+        res.send(results);
+    } else {
+        res.sendStatus(500);
+    }
 })
 
 user.get('/:id', (req, res) => {
