@@ -8,8 +8,8 @@ export function Users() {
         fetchUsers();
         async function fetchUsers() {
             const response = await fetch('/api/user');
-            const responseJson = await response.json();
-            setUsers(responseJson.users);
+            const users = await response.json();
+            setUsers(users);
         }
     }, []);
 
