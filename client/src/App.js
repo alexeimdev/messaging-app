@@ -6,12 +6,15 @@ import {
 } from 'react-router-dom';
 import { UsersPage } from './pages/usersPage';
 import { CounterPage } from './pages/counterPage';
+import { HomePage } from './pages/homePage';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact render={() => <h1>Home</h1>} />
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
         <Route path="/users">
           <UsersPage />
         </Route>
