@@ -34,7 +34,7 @@ user.get('/bulk/:results', async (req, res) => {
 
 user.get('/:id', (req, res) => {
     const user = usersDbStub.users.find(x => x.email == req.params.id);
-    console.debug('[api.user.id]', 'user', user);
+    console.debug('[api.user:id]', 'user', user);
     res.send(user);
 })
 
