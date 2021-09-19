@@ -13,7 +13,7 @@ if (!globalThis.fetch) {
 	globalThis.fetch = fetch;
 }
 
-// connecting to db
+// connecting to mongodb
 try {
 	console.log('[server]', 'trying to connect to mongodb...');
 	mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
