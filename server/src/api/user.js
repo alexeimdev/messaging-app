@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const usersDbStub = require('../db/stub/users.json');
-const userModel = require('../models/user');
+const User = require('../models/user');
 
 const user = express.Router();
 
 user.get('/', async (req, res) => {
     try {
-        const users = await userModel.find();
+        const users = await User.find();
         console.log('[api.user.test]', 'users', users);
         res.send(users);
     } catch (error) {
@@ -29,7 +29,7 @@ user.get('/bulk/:results', async (req, res) => {
     const results = responseJson.results;
 
     if (results) {
-        const bulkResult = await userModel.collection.insertMany(results);
+        const bulkResult = await User.collection.insertMany(results);
         console.log('[api.user.bulk:result]', 'bulkResult', bulkResult);
         res.send(bulkResult);
     } else {
