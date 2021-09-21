@@ -1,10 +1,19 @@
 .layout {
+    opacity: 1;
 }
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background-color: #637987;
 }
 
 .main {
+    padding-top: 72px;
+    background-color: #FAEDE3;
 }
 
 .footer {
