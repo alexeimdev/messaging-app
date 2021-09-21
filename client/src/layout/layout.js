@@ -5,75 +5,7 @@ export function Layout(props) {
     return (
         <div className={styles.layout}>
             <header className={styles.header}></header>
-            <main className={styles.main}>
-                <>
-                    {props.children}
-                    11111111<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    ssssssss<br />
-                    22222222<br />
-                </>
-            </main>
+            <main className={styles.main}>{props.children}</main>
             <footer className={styles.footer}></footer>
         </div>
     )
