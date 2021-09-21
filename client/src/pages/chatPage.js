@@ -1,8 +1,9 @@
+import { Chat } from '../features/chat/Chat';
 
 export function ChatPage(props) {
     return (
         <div>
-            <h1>Chat</h1>
+            <Chat />
         </div>
     )
 }
