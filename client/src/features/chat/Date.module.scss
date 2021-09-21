@@ -8,8 +8,10 @@
     background-color: $powder-blue;
     border-radius: 10px;
     z-index: 2;
-    
+    border-bottom: 1px solid $light-gray;
+
     .text {
         font-size: 0.9em;
+        font-weight: 500;
     }
 }
