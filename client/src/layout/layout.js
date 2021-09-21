@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../layout/layout.module.css';
+import styles from '../layout/layout.module.scss';
 
 export function Layout(props) {
     return (

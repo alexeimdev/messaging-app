@@ -1,3 +1,5 @@
+@import '../base.scss';
+
 .layout {
     display: grid;
     grid-template-rows: 60px auto 60px;
@@ -6,15 +8,15 @@
 }
 
 .header {
-    background-color: #637987;
+    background-color: $slite-gray;
 }
 
 .main {
     padding: 20px;
     overflow: scroll;
-    background-color: #FAEDE3;
+    background-color: $linen;
 }
 
 .footer {
-    border: 1px dotted #637987;
+    border: 1px dotted $slite-gray;
 }

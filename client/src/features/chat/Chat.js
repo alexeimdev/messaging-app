@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Chat.module.css';
+import styles from './Chat.module.scss';
 import { Message } from './Message';
 
 export function Chat(props) {
