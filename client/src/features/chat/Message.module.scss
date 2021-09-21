@@ -1,0 +1,39 @@
+.message {
+    min-width: 10px;
+    align-self: end;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #EAF2E4;
+    border-radius: 15px;
+
+    border-bottom: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 0;
+
+    .text {
+        padding-bottom: 5px;
+    }
+
+    .time {
+        text-align: end;
+        font-size: 0.8em;
+        color: grey;
+    }
+
+    &.me {
+        align-self: start;
+        background-color: white;
+        border-bottom: 1px solid lightgrey;
+        border-left: 1px solid lightgrey;
+        border-right: 0;
+
+        .time {
+            text-align: start;
+        }
+    }
+
+}
+
+
+
+
