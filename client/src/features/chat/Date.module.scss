@@ -1,0 +1,14 @@
+@import '../../base.scss';
+
+.date {
+    min-width: 10px;
+    align-self: center;
+    padding: 5px 10px;
+    margin: 15px;
+    background-color: $powder-blue;
+    border-radius: 10px;
+
+    .text {
+        font-size: 0.9em;
+    }
+}
