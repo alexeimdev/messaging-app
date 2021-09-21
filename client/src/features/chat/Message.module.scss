@@ -1,14 +1,29 @@
 .message {
     min-width: 10px;
     align-self: end;
-    padding: 10px;
+    padding: 4px 10px;
     margin-bottom: 10px;
     background-color: #EAF2E4;
     border-radius: 15px;
+    position: relative;
 
     border-bottom: 1px solid lightgrey;
-    border-right: 1px solid lightgrey;
     border-left: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        right: 0%;
+        top: 0%;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 15px solid;
+        border-top-color: #EAF2E4;
+        margin-right: -10px;
+        clear: both;
+    }
 
     .text {
         padding-bottom: 5px;
@@ -24,8 +39,14 @@
         align-self: start;
         background-color: white;
         border-bottom: 1px solid lightgrey;
-        border-left: 1px solid lightgrey;
+
         border-right: 0;
+
+        &::before {
+            left: 0%;
+            margin-left: -10px;
+            border-top-color: white;
+        }
 
         .time {
             text-align: start;
@@ -33,7 +54,3 @@
     }
 
 }
-
-
-
-
