@@ -16,7 +16,7 @@ export function MessageInput(props) {
 
     return (
         <form onSubmit={handleSubmit} className={styles.messageInputForm}>
-            <input ref={inputRef} className={styles.messageInput} />
+            <input ref={inputRef} className={styles.messageInput} placeholder="Message" />
             <div className={styles.spacer} />
             <button type="submit" value="" className={styles.submitButton} />
         </form>
