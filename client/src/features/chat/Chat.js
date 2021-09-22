@@ -6,9 +6,9 @@ import { Date as MessagesDate } from './Date';
 export function Chat(props) {
 
     const [messages, setMessanges] = useState([]);
-    
+
     useEffect(() => {
-        
+
         const today = new Date();
         const yesterday = today.getDate() - 1;
         const tomorrow = today.getDate() + 1;
@@ -17,30 +17,31 @@ export function Chat(props) {
             {
                 date: "Yesterday",
                 messagesArr: [
-                    { time: "07:03", text: "Hi!", me: false },
-                    { time: "07:05", text: "How you doing?", me: true },
-                    { time: "07:06", text: "I'm fine thanks. How are you?", me: false },
-                    { time: "07:10", text: "Execllent", me: true },
+                    { time: "07:03", text: "Hi!", author: "me" },
+                    { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
+                    { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
+                    { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
                 ]
             },
             {
                 date: "Today",
                 messagesArr: [
-                    { time: "07:03", text: "Hi!", me: false },
-                    { time: "07:05", text: "How you doing?", me: true },
-                    { time: "07:06", text: "I'm fine thanks. How are you?", me: false },
-                    { time: "07:11", text: "😃", me: true },
+                    { time: "07:03", text: "Hi!", author: "me" },
+                    { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
+                    { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
+                    { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
+                    { time: "07:11", text: "😃", author: "me" },
                 ]
             },
             {
                 date: "Tommorow",
                 messagesArr: [
-                    { time: "07:03", text: "Hi!", me: false },
-                    { time: "07:05", text: "How you doing?", me: true },
-                    { time: "07:06", text: "I'm fine thanks. How are you?", me: false },
-                    { time: "07:10", text: "Execllent!", me: true },
-                    { time: "07:10", text: "I'm very glad!", me: true },
-                    { time: "07:11", text: "😃", me: true },
+                    { time: "07:03", text: "Hi!", author: "liat5861@gmail.com" },
+                    { time: "07:05", text: "How you doing?", author: "me" },
+                    { time: "07:06", text: "I'm fine thanks. How are you?", author: "liat5861@gmail.com" },
+                    { time: "07:10", text: "Execllent!", author: "me" },
+                    { time: "07:10", text: "I'm very glad!", author: "me" },
+                    { time: "07:11", text: "😃", author: "me" },
                 ]
             },
         ]);
@@ -55,16 +56,12 @@ export function Chat(props) {
                 {messages?.map(message =>
                     <>
                         <MessagesDate key={message.date} date={message.date} />
-                        {message?.messagesArr.map((item, index, arr) => {
-                            const showArrow = index == 0 || item.me != arr[index - 1].me;
-                            return (
-                                <Message key={index} 
-                                    text={item.text} 
-                                    time={item.time} 
-                                    me={item.me} 
-                                    arrow={showArrow} />
-                            )
-                        }
+                        {message?.messagesArr.map((item, index, arr) =>
+                            <Message key={index}
+                                text={item.text}
+                                time={item.time}
+                                me={item.author == "me"}
+                                arrow={index == 0 || item.author != arr[index - 1].author} />
                         )}
                     </>
                 )}
