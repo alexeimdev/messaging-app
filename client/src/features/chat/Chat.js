@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Chat.module.scss';
 import { Message } from './Message';
-import { Date } from './Date';
+import { Date as MessagesDate } from './Date';
 
 export function Chat(props) {
 
     const [messages, setMessanges] = useState([]);
-
+    
     useEffect(() => {
+        
+        const today = new Date();
+        const yesterday = today.getDate() - 1;
+        const tomorrow = today.getDate() + 1;
+
         setMessanges([
             {
                 date: "Yesterday",
@@ -47,7 +52,7 @@ export function Chat(props) {
             <div className={styles.messages}>
                 {messages?.map(message =>
                     <>
-                        <Date date={message.date} />
+                        <MessagesDate date={message.date} />
                         {message?.messagesArr.map((item, index, arr) => {
                             const showArrow = index == 0 || item.me != arr[index - 1].me;
                             return (
