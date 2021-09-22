@@ -48,8 +48,12 @@ export function Chat(props) {
                 {messages?.map(message =>
                     <>
                         <Date date={message.date} />
-                        {message?.messagesArr.map(messageItem =>
-                            <Message text={messageItem.text} time={messageItem.time} me={messageItem.me} />
+                        {message?.messagesArr.map((item, index, arr) => {
+                            const showArrow = index == 0 || item.me != arr[index - 1].me;
+                            return (
+                                <Message text={item.text} time={item.time} me={item.me} arrow={showArrow} />
+                            )
+                        }
                         )}
                     </>
                 )}
