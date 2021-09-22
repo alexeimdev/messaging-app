@@ -8,7 +8,7 @@ export function MessageInput(props) {
     function handleSubmit(e) {
         e.preventDefault();
         if (inputRef.current.value) {
-            props.onSubmit(inputRef.current.value);
+            props.onSubmit(inputRef.current.value, "me");
             inputRef.current.value = "";
             inputRef.current.focus();
         }

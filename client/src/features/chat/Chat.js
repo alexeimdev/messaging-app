@@ -34,15 +34,16 @@ export function Chat(props) {
                 ]
             },
         ]);
+
     }, []);
 
-    function addNewMessage(message) {
+    function addNewMessage(message, author) {
         const now = new Date();
         let newMessages = [...messages];
-        newMessages.find(x => x.date == "Today").messagesArr.push({
-            time: '11:22', //now.getTime().toString(),
+        newMessages?.find(x => x.date == "Today").messagesArr.push({
+            time: `${now.getHours()}:${now.getMinutes()}`,
             text: message,
-            author: "me"
+            author: author
         });
         setMessages(newMessages);
     }
