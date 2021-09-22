@@ -48,7 +48,9 @@ export function Chat(props) {
 
     return (
         <div className={styles.chat}>
-            <div className={styles.bg} />
+            {props.bg == 'default' &&
+                <div className={styles.bg} />
+            }
             <div className={styles.messages}>
                 {messages?.map(message =>
                     <>
