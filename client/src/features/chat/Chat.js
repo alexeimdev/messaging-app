@@ -39,9 +39,11 @@ export function Chat(props) {
 
     function addNewMessage(message, author) {
         const now = new Date();
+        const currentHour = ("0" + now.getHours()).slice(-2);
+        const currentMinutes = ("0" + now.getMinutes()).slice(-2);
         let newMessages = [...messages];
         newMessages?.find(x => x.date == "Today").messagesArr.push({
-            time: `${now.getHours()}:${now.getMinutes()}`,
+            time: `${currentHour}:${currentMinutes}`,
             text: message,
             author: author
         });
