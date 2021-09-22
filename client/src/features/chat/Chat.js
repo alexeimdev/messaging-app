@@ -52,11 +52,15 @@ export function Chat(props) {
             <div className={styles.messages}>
                 {messages?.map(message =>
                     <>
-                        <MessagesDate date={message.date} />
+                        <MessagesDate key={message.date} date={message.date} />
                         {message?.messagesArr.map((item, index, arr) => {
                             const showArrow = index == 0 || item.me != arr[index - 1].me;
                             return (
-                                <Message text={item.text} time={item.time} me={item.me} arrow={showArrow} />
+                                <Message key={index} 
+                                    text={item.text} 
+                                    time={item.time} 
+                                    me={item.me} 
+                                    arrow={showArrow} />
                             )
                         }
                         )}
