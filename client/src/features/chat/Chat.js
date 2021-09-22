@@ -42,7 +42,7 @@ export function Chat(props) {
         const currentHour = ("0" + now.getHours()).slice(-2);
         const currentMinutes = ("0" + now.getMinutes()).slice(-2);
         let newMessages = [...messages];
-        newMessages?.find(x => x.date == "Today").messagesArr.push({
+        newMessages?.find(x => x.date === "Today").messagesArr.push({
             time: `${currentHour}:${currentMinutes}`,
             text: message,
             author: author
@@ -52,7 +52,7 @@ export function Chat(props) {
 
     return (
         <div className={styles.chat}>
-            {props.bg == 'default' &&
+            {props.bg === 'default' &&
                 <div className={styles.bg} />
             }
             <Messages messages={messages} />

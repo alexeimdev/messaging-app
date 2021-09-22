@@ -27,8 +27,8 @@ export function Messages(props) {
                         <Message key={index}
                             text={item.text}
                             time={item.time}
-                            me={item.author == "me"}
-                            arrow={index == 0 || item.author != arr[index - 1].author} />
+                            me={item.author === "me"}
+                            arrow={index === 0 || item.author !== arr[index - 1].author} />
                     )}
                 </>
             )}
