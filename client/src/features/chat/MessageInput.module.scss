@@ -1,0 +1,45 @@
+@import '../../base.scss';
+
+.messageInputWrapper {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAEDE3;
+    padding: 10px;
+    z-index: 2;
+
+    .messageInput {
+        height: 45px;
+        width: 100%;
+        font-size: 0.9em;
+        font-weight: 500;
+        padding: 0 15px;
+        border: none;
+        border-bottom: 1px solid $light-gray;
+        border-radius: 20px;
+
+
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            outline-width: 0;
+        }
+    }
+
+    .submitButton {
+        border-radius: 50%;
+        width: 55px;
+        height: 45px;
+        border:none;
+        background-image:none;
+        background-color: $slite-gray;
+        box-shadow: none;
+        border-bottom: 1px solid $light-gray;
+    }
+
+    .spacer {
+        margin: 4px;
+    }
+}

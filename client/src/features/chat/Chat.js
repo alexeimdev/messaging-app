@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Chat.module.scss';
 import { Message } from './Message';
 import { Date as MessagesDate } from './Date';
+import { MessageInput } from "./MessageInput";
 
 export function Chat(props) {
 
@@ -66,6 +67,7 @@ export function Chat(props) {
                     </>
                 )}
             </div>
+            <MessageInput />
         </div>
     )
 }
