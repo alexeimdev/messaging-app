@@ -24,7 +24,6 @@ export function Chat(props) {
                     { time: "07:03", text: "Hi!", me: false },
                     { time: "07:05", text: "How you doing?", me: true },
                     { time: "07:06", text: "I'm fine thanks. How are you?", me: false },
-                    { time: "07:10", text: "Execllent!", me: true },
                     { time: "07:11", text: "😃", me: true },
                 ]
             },
@@ -35,6 +34,7 @@ export function Chat(props) {
                     { time: "07:05", text: "How you doing?", me: true },
                     { time: "07:06", text: "I'm fine thanks. How are you?", me: false },
                     { time: "07:10", text: "Execllent!", me: true },
+                    { time: "07:10", text: "I'm very glad!", me: true },
                     { time: "07:11", text: "😃", me: true },
                 ]
             },
