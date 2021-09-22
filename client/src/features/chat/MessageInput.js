@@ -7,10 +7,10 @@ export function MessageInput(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        inputRef.current.focus();
         if (inputRef.current.value) {
             props.onSubmit(inputRef.current.value, "me");
             inputRef.current.value = "";
-            inputRef.current.focus();
         }
     }
 
