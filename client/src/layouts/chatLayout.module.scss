@@ -9,6 +9,14 @@
 
 .header {
     background-color: $slite-gray;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+
+    .headerTitle {
+        font-size: 1.5em;
+        color: $white;
+    }
 }
 
 .main {
