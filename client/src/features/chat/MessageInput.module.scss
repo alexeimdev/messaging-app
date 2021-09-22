@@ -32,11 +32,13 @@
         border-radius: 50%;
         width: 55px;
         height: 45px;
-        border:none;
-        background-image:none;
+        border: none;
+        background-image: none;
         background-color: $slite-gray;
         box-shadow: none;
         border-bottom: 1px solid $light-gray;
+        padding-top: 4px;
+        color: $white;
     }
 
     .spacer {

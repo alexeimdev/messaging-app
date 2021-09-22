@@ -1,24 +1,31 @@
-import React, {useRef} from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './MessageInput.module.scss';
 
 export function MessageInput(props) {
 
     const inputRef = useRef();
+    const [message, setMessage] = useState('');
+
+    function handleInputChange(e) {
+        setMessage(e.target.value);
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         inputRef.current.focus();
-        if (inputRef.current.value) {
-            props.onSubmit(inputRef.current.value, "me");
-            inputRef.current.value = "";
+        if (message) {
+            props.onSubmit(message, "me");
+            setMessage('');
         }
     }
 
     return (
         <form onSubmit={handleSubmit} className={styles.messageInputForm}>
-            <input ref={inputRef} className={styles.messageInput} placeholder="Message" />
+            <input ref={inputRef} value={message} onChange={handleInputChange} className={styles.messageInput} placeholder="Message" />
             <div className={styles.spacer} />
-            <button type="submit" value="" className={styles.submitButton} />
+            <button type="submit" value="" className={styles.submitButton}>
+                <span class="material-icons">{message ? 'send' : 'mic'}</span>
+            </button>
         </form>
     )
 }
