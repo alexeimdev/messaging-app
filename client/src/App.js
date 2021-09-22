@@ -4,7 +4,6 @@ import {
     Switch,
     Route
 } from 'react-router-dom';
-import { Layout } from './layout/layout';
 import { UsersPage } from './pages/usersPage';
 import { CounterPage } from './pages/counterPage';
 import { ChatPage } from './pages/chatPage';
@@ -14,20 +13,18 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Layout>
-                    <Route path="/" exact>
-                        <HomePage />
-                    </Route>
-                    <Route path="/chat">
-                        <ChatPage />
-                    </Route>
-                    <Route path="/users">
-                        <UsersPage />
-                    </Route>
-                    <Route path="/counter">
-                        <CounterPage />
-                    </Route>
-                </Layout>
+                <Route path="/" exact>
+                    <HomePage />
+                </Route>
+                <Route path="/chat">
+                    <ChatPage />
+                </Route>
+                <Route path="/users">
+                    <UsersPage />
+                </Route>
+                <Route path="/counter">
+                    <CounterPage />
+                </Route>
             </Switch>
         </Router>
     );

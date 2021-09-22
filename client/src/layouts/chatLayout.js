@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../layout/layout.module.scss';
+import styles from './chatLayout.module.scss';
 
-export function Layout(props) {
+export function ChatLayout(props) {
     return (
         <div className={styles.layout}>
             <header className={styles.header}></header>
