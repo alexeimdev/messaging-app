@@ -12,31 +12,31 @@ export function Chat(props) {
 
     useEffect(() => {
 
-        const today = new Date();
-        const yesterday = today.getDate() - 1;
-        const tomorrow = today.getDate() + 1;
+    //     const today = new Date();
+    //     const yesterday = today.getDate() - 1;
+    //     const tomorrow = today.getDate() + 1;
 
-        setMessages([
-            {
-                date: "Yesterday",
-                messagesArr: [
-                    { time: "07:03", text: "Hi!", author: "me" },
-                    { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
-                    { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
-                    { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
-                ]
-            },
-            {
-                date: "Today",
-                messagesArr: [
-                    { time: "07:03", text: "Hi!", author: "me" },
-                    { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
-                    { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
-                    { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
-                    { time: "07:11", text: "😃", author: "me" },
-                ]
-            },
-        ]);
+    //     setMessages([
+    //         {
+    //             date: "Yesterday",
+    //             messagesArr: [
+    //                 { time: "07:03", text: "Hi!", author: "me" },
+    //                 { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
+    //                 { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
+    //                 { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
+    //             ]
+    //         },
+    //         {
+    //             date: "Today",
+    //             messagesArr: [
+    //                 { time: "07:03", text: "Hi!", author: "me" },
+    //                 { time: "07:05", text: "How you doing?", author: "liat5861@gmail.com" },
+    //                 { time: "07:06", text: "I'm fine thanks. How are you?", author: "me" },
+    //                 { time: "07:10", text: "Execllent", author: "liat5861@gmail.com" },
+    //                 { time: "07:11", text: "😃", author: "me" },
+    //             ]
+    //         },
+    //     ]);
 
     }, []);
 
@@ -52,11 +52,25 @@ export function Chat(props) {
         });
 
         let newMessages = [...messages];
-        newMessages?.find(x => x.date === "Today").messagesArr.push({
-            time: `${currentHour}:${currentMinutes}`,
-            text: message,
-            author: user
-        });
+        let todayMessages = newMessages?.find(x => x.date === "Today");
+
+        if (todayMessages) {
+            todayMessages.messagesArr.push({
+                time: `${currentHour}:${currentMinutes}`,
+                text: message,
+                author: user
+            });
+        } else {
+            newMessages.push({
+                date: "Today",
+                messagesArr: [{
+                    time: `${currentHour}:${currentMinutes}`,
+                    text: message,
+                    author: user
+                }]
+            });
+        }
+
         setMessages(newMessages);
     }
 
