@@ -14,7 +14,7 @@ export function MessageInput(props) {
         e.preventDefault();
         inputRef.current.focus();
         if (message) {
-            props.onSubmit(message, "me");
+            props.onSubmit(message);
             setMessage('');
         }
     }
