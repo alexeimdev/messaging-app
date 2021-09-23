@@ -28,7 +28,7 @@ export function Messages(props) {
                     <MessagesDate key={message.date} date={message.date} />
                     {message?.messagesArr.map((item, index, arr) =>
                         <Message key={index}
-                            text={item.text}
+                            message={item.message}
                             time={item.time}
                             me={item.author === "me"}
                             arrow={index === 0 || item.author !== arr[index - 1].author} />

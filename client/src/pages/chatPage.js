@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { ChatLayout } from '../layouts/chatLayout';
 import { Chat } from '../features/chat/Chat';
 
 export function ChatPage(props) {
 
-    const [socket, setSocket] = useState(null);
+    const [socket, setSocket] = useState();
 
     useEffect(() => {
-        setSocket(io.connect())
-    }, []);
+        const newSocket = io.connect();
+        setSocket(newSocket);
+    }, [setSocket]);
 
     return (
         <ChatLayout headerTitle="Chat">

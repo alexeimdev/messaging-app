@@ -40,39 +40,48 @@ export function Chat(props) {
 
     }, []);
 
-    function addNewMessage(message) {
-        const now = new Date();
-        const currentHour = ("0" + now.getHours()).slice(-2);
-        const currentMinutes = ("0" + now.getMinutes()).slice(-2);
+    useEffect(() => {
 
-        // send to server
-        props.socket.emit("chat", {
-            text: message,
-            author: user,
-        });
-
-        let newMessages = [...messages];
-        let todayMessages = newMessages?.find(x => x.date === "Today");
-
-        if (todayMessages) {
-            todayMessages.messagesArr.push({
-                time: `${currentHour}:${currentMinutes}`,
-                text: message,
-                author: user
-            });
-        } 
-        else {
-            newMessages.push({
-                date: "Today",
-                messagesArr: [{
+        function addMessage({author, message}) {
+            const now = new Date();
+            const currentHour = ("0" + now.getHours()).slice(-2);
+            const currentMinutes = ("0" + now.getMinutes()).slice(-2);
+    
+            let newMessages = [...messages];
+            let todayMessages = newMessages?.find(x => x.date === "Today");
+    
+            if (todayMessages) {
+                newMessages.find(x => x.date === "Today").messagesArr.push({
                     time: `${currentHour}:${currentMinutes}`,
-                    text: message,
-                    author: user
-                }]
-            });
+                    author: author,
+                    message: message,
+                });
+            } 
+            else {
+                newMessages.push({
+                    date: "Today",
+                    messagesArr: [{
+                        time: `${currentHour}:${currentMinutes}`,
+                        author: author,
+                        message: message,
+                    }]
+                });
+            }
+    
+            setMessages(newMessages);
         }
 
-        setMessages(newMessages);
+        props.socket?.on("message", addMessage);
+        return () => props.socket?.off("message", addMessage);
+
+    }, [props.socket]);
+
+    function createNewMessage(message) {
+        // send to server
+        props.socket?.emit("chat", {
+            author: user,
+            message: message,
+        });
     }
 
     return (
@@ -81,7 +90,7 @@ export function Chat(props) {
                 <div className={styles.bg} />
             }
             <Messages messages={messages} />
-            <MessageInput onSubmit={addNewMessage} />
+            <MessageInput onSubmit={createNewMessage} />
             <Modal title="Choose user" show={!user} hideCloseButton>
                 <ConnectedUser users={['alexei@test.com', 'liat@test.com']} onSelectUser={(user) => setUser(user)} />
             </Modal>
