@@ -31,11 +31,8 @@
             }
         }
         .modalBody {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: $white;
-            min-height: 200px;
+            min-height: 100px;
             min-width: 300px;
         }
         .modalFooter {
