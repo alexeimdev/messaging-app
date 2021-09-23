@@ -24,6 +24,7 @@ export function Modal(props) {
             <div className={styles.modal} onClick={onModalClick} >
                 <div className={styles.modalHeader}>
                     <span onClick={onCloseClick} className={`material-icons ${styles.closeButton}`}>close</span>
+                    <span>{props.title}</span>
                 </div>
                 <div className={styles.modalBody}>
                     {props.children}
