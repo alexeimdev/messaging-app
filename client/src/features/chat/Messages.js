@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Message } from './Message';
 import { Date as MessagesDate } from './Date';
 import styles from './Messages.module.scss';
@@ -7,15 +7,18 @@ export function Messages(props) {
 
     const messagesEndRef = useRef();
 
+    const [ showScrollToBottomButton, setShowScrollToBottomButton] = useState(false);
+
     useEffect(() => {
         setTimeout(() => {
             scrollToBottom();
         }, 100);
 
-        function scrollToBottom() {
-            messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        }
     }, [props.messages]);
+
+    function scrollToBottom() {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
 
 
     return (
@@ -32,6 +35,11 @@ export function Messages(props) {
                     )}
                 </>
             )}
+            {showScrollToBottomButton &&
+                <button type="button" value="" onClick={scrollToBottom} className={styles.scrollToBottomButton}>
+                    <span className="material-icons">south</span>
+                </button>
+            }
             <div ref={messagesEndRef} />
         </div>
     )
