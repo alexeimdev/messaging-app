@@ -41,6 +41,13 @@ export function Chat(props) {
         const now = new Date();
         const currentHour = ("0" + now.getHours()).slice(-2);
         const currentMinutes = ("0" + now.getMinutes()).slice(-2);
+
+        // send to server
+        props.socket.emit("chat", {
+            text: message,
+            author: author,
+        });
+
         let newMessages = [...messages];
         newMessages?.find(x => x.date === "Today").messagesArr.push({
             time: `${currentHour}:${currentMinutes}`,
