@@ -60,7 +60,8 @@ export function Chat(props) {
                 text: message,
                 author: user
             });
-        } else {
+        } 
+        else {
             newMessages.push({
                 date: "Today",
                 messagesArr: [{
