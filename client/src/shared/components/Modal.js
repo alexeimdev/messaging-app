@@ -1,11 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from './Modal.module.scss';
 
 
 export function Modal(props) {
 
-    const [show, setShow] = useState(props.show || false);
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShow(props.show);
+        }, 500);
+    }, [props.show]);
 
     if (!show) return null;
 
@@ -23,8 +29,12 @@ export function Modal(props) {
         <div className={styles.modalWrapper}>
             <div className={styles.modal} onClick={onModalClick} >
                 <div className={styles.modalHeader}>
-                    <span onClick={onCloseClick} className={`material-icons ${styles.closeButton}`}>close</span>
-                    <span>{props.title}</span>
+                    {!props.hideCloseButton &&
+                        <span onClick={onCloseClick} className={`material-icons ${styles.closeButton}`}>close</span>
+                    }
+                    {props.title &&
+                        <span className={styles.title}>{props.title}</span>
+                    }
                 </div>
                 <div className={styles.modalBody}>
                     {props.children}
