@@ -8,7 +8,7 @@ export function ChatPage(props) {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        setSocket(io.connect('/'))
+        setSocket(io.connect())
     }, []);
 
     return (
