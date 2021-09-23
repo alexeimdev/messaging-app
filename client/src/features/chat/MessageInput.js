@@ -24,7 +24,7 @@ export function MessageInput(props) {
             <input ref={inputRef} value={message} onChange={handleInputChange} className={styles.messageInput} placeholder="Message" />
             <div className={styles.spacer} />
             <button type="submit" value="" className={styles.submitButton}>
-                <span class="material-icons">{message ? 'send' : 'mic'}</span>
+                <span className="material-icons">{message ? 'send' : 'mic'}</span>
             </button>
         </form>
     )
