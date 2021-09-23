@@ -7,7 +7,7 @@ export function Messages(props) {
 
     const messagesEndRef = useRef();
 
-    const [ showScrollToBottomButton, setShowScrollToBottomButton] = useState(false);
+    const [ showScrollToBottomButton, setShowScrollToBottomButton] = useState(true);
 
     useEffect(() => {
         setTimeout(() => {
