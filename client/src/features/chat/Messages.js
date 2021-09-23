@@ -37,7 +37,7 @@ export function Messages(props) {
             )}
             {showScrollToBottomButton &&
                 <button type="button" value="" onClick={scrollToBottom} className={styles.scrollToBottomButton}>
-                    <span className="material-icons">south</span>
+                    <span className="material-icons">keyboard_double_arrow_down</span>
                 </button>
             }
             <div ref={messagesEndRef} />
