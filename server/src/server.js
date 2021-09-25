@@ -36,7 +36,9 @@ io.on('connection', (socket) => {
 	console.log('[server]', 'socket.io connection is made');
 
 	//user sending message
-	socket.on("chat", ({ author, message }) => {
+	socket.on("sendMessage", ({ author, message }) => {
+
+		console.log('sendMessage', author, message);
 
 		//gets the room user and the message sent
 		//const p_user = get_Current_User(socket.id);
@@ -47,7 +49,7 @@ io.on('connection', (socket) => {
 		// 	text: text,
 		// });
 
-		io.emit("message", {
+		io.emit("newMessage", {
 			author: author,
 			message: message,
 		});
