@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
 import { ChatLayout } from '../layouts/chatLayout';
 import { Chat } from '../features/chat/Chat';
+import { useChat } from "../features/hooks/chatHook";
 
 export function ChatPage(props) {
 
-    const [socket, setSocket] = useState();
-
-    useEffect(() => {
-        const newSocket = io.connect();
-        setSocket(newSocket);
-    }, [setSocket]);
+    const { sendMessage, onIncomingMassage } = useChat();
 
     return (
         <ChatLayout headerTitle="Chat">
-            <Chat socket={socket} bg="default" />
+            <Chat bg="default"
+                onSendMessage={sendMessage}
+                onIncomingMassage={onIncomingMassage} />
         </ChatLayout>
     )
 }
