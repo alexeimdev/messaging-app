@@ -10,7 +10,7 @@ export function Chat(props) {
     const [messages, setMessages] = useState([]);
     const [user, setUser] = useState('');
 
-    useEffect(() => {
+    // useEffect(() => {
 
     //     const today = new Date();
     //     const yesterday = today.getDate() - 1;
@@ -38,9 +38,11 @@ export function Chat(props) {
     //         },
     //     ]);
 
-    }, []);
+    // }, []);
 
     useEffect(() => {
+
+        props.onIncomingMassage(addMessage);
 
         function addMessage({author, message}) {
             const now = new Date();
@@ -71,16 +73,12 @@ export function Chat(props) {
             setMessages(newMessages);
         }
 
-        props.socket?.on("message", addMessage);
-        return () => props.socket?.off("message", addMessage);
-
-    }, [props.socket]);
+    }, [props.onIncomingMassage]);
 
     function createNewMessage(message) {
-        // send to server
-        props.socket?.emit("chat", {
+        props.onSendMessage({
             author: user,
-            message: message,
+            message, 
         });
     }
 
@@ -89,7 +87,7 @@ export function Chat(props) {
             {props.bg === 'default' &&
                 <div className={styles.bg} />
             }
-            <Messages messages={messages} />
+            <Messages me={user} messages={messages} />
             <MessageInput onSubmit={createNewMessage} />
             <Modal title="Choose user" show={!user} hideCloseButton>
                 <ConnectedUser users={['alexei@test.com', 'liat@test.com']} onSelectUser={(user) => setUser(user)} />
