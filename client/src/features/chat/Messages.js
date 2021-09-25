@@ -23,6 +23,7 @@ export function Messages(props) {
 
     return (
         <div className={styles.messages}>
+            <div>{props.user}</div>
             {props.messages?.map(message =>
                 <>
                     <MessagesDate key={message.date} date={message.date} />
@@ -30,7 +31,7 @@ export function Messages(props) {
                         <Message key={index}
                             message={item.message}
                             time={item.time}
-                            me={item.author === "me"}
+                            me={item.author === props.me}
                             arrow={index === 0 || item.author !== arr[index - 1].author} />
                     )}
                 </>
