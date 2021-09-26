@@ -10,7 +10,7 @@ export function ConnectedUser(props) {
     return (
         <form className={styles.connectedUser}>
             {props.users?.map(user =>
-                <div className={styles.userWrapper}>
+                <div key={user} className={styles.userWrapper}>
                     <input type="radio" id={user} name="user" value={user} onInput={handleSelectUser} className={styles.radioInput} />
                     <label htmlFor={user}>{user}</label>
                 </div>

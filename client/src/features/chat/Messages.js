@@ -25,7 +25,7 @@ export function Messages(props) {
         <div className={styles.messages}>
             <div>{props.user}</div>
             {props.messages?.map(message =>
-                <>
+                <React.Fragment key={message.date}>
                     <MessagesDate key={message.date} date={message.date} />
                     {message?.messagesArr.map((item, index, arr) =>
                         <Message key={index}
@@ -34,7 +34,7 @@ export function Messages(props) {
                             me={item.author === props.me}
                             arrow={index === 0 || item.author !== arr[index - 1].author} />
                     )}
-                </>
+                </React.Fragment>
             )}
             {showScrollToBottomButton &&
                 <button type="button" value="" onClick={scrollToBottom} className={styles.scrollToBottomButton}>
