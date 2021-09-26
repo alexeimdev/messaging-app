@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
 			});
 		}
 
-		socket.broadcast("message", {
+		socket.broadcast.emit("message", {
 			author: author,
 			message: message,
 		});
