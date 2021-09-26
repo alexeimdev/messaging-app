@@ -23,7 +23,7 @@ export function ChatPage(props) {
     }
 
     function onSelectUser(user) {
-        storeUser(user);
+        //storeUser(user);
         dispatch(setUser(user));
     }
 
