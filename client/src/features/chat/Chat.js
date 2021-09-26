@@ -6,11 +6,14 @@ import { MessageInput } from "./MessageInput";
 import { Modal } from "../../shared/components/Modal";
 import { ConnectedUser } from '../users/ConnectedUser';
 import { addMessage, setMessages } from './chatSlice';
+import { setUser } from '../users/userSlice';
 
 export function Chat(props) {
 
-    const [user, setUser] = useState('');
+    const dispatch = useDispatch();
     const messages = useSelector(state => state.chat.messages);
+    const user = useSelector(state => state.user.user);
+
 
     useEffect(() => {
         props.onStartChat(props.chatId);
@@ -39,7 +42,7 @@ export function Chat(props) {
             <Messages me={user} messages={messages} />
             <MessageInput onSubmit={createNewMessage} />
             <Modal title="Choose user" show={!user} hideCloseButton>
-                <ConnectedUser users={['alexei@example.com', 'liat@example.com']} onSelectUser={(user) => setUser(user)} />
+                <ConnectedUser users={['alexei@example.com', 'liat@example.com']} onSelectUser={(user) => dispatch(setUser(user))} />
             </Modal>
         </div>
     )
