@@ -13,8 +13,8 @@ export function Chat(props) {
     const messages = useSelector(state => state.chat.messages);
 
     useEffect(() => {
-        props.onStartChat("fakeChatId");
-    }, [props.onStartChat]);
+        props.onStartChat(props.chatId);
+    }, [props.onStartChat, props.chatId]);
 
     useEffect(() => {
         props.onIncomingMassage(addMessage);

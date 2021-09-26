@@ -16,7 +16,7 @@ function App() {
                 <Route path="/" exact>
                     <HomePage />
                 </Route>
-                <Route path="/chat">
+                <Route path="/chat/:id">
                     <ChatPage />
                 </Route>
                 <Route path="/users">

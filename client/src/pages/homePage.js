@@ -6,7 +6,7 @@ export function HomePage(props) {
         <DefaultLayout headerTitle="Home">
             <h1>Home</h1>
             <ul>
-                <li><Link to="/chat">Chat</Link></li>
+                <li><Link to="/chat/12345">Chat</Link></li>
                 <li><Link to="/users">Users</Link></li>
                 <li><Link to="/counter">Counter</Link></li>
             </ul>
