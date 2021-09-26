@@ -4,25 +4,25 @@ import styles from './Chat.module.scss';
 import { Messages } from "./Messages";
 import { MessageInput } from "./MessageInput";
 import { addMessage, setMessages } from './chatSlice';
+import { useChat } from '../../hooks/chatHook';
 
 export function Chat(props) {
 
+    const { startChat, sendMessage, onIncomingMassage, onGetChatHistory } = useChat();
     const messages = useSelector(state => state.chat.messages);
 
     useEffect(() => {
-        props.onStartChat(props.chatId);
-    }, [props.onStartChat, props.chatId]);
+        if (props.chatId) {
+            startChat(props.chatId);
+        }
 
-    useEffect(() => {
-        props.onIncomingMassage(addMessage);
-    }, [props.onIncomingMassage]);
+        onIncomingMassage(addMessage);
+        onGetChatHistory(setMessages);
 
-    useEffect(() => {
-        props.onGetChatHistory(setMessages);
-    }, [props.onGetChatHistory]);
+    }, [props.chatId]);
 
-    function createNewMessage(message) {
-        props.onSendMessage({
+    function handleSubmitMessage(message) {
+        sendMessage({
             author: props.user,
             message, 
         });
@@ -34,7 +34,7 @@ export function Chat(props) {
                 <div className={styles.bg} />
             }
             <Messages me={props.user} messages={messages} />
-            <MessageInput onSubmit={createNewMessage} />
+            <MessageInput onSubmit={handleSubmitMessage} />
         </div>
     )
 }

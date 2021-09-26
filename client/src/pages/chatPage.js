@@ -5,7 +5,6 @@ import { ChatLayout } from '../layouts/chatLayout';
 import { Chat } from '../features/chat/Chat';
 import { Modal } from '../shared/components/Modal';
 import { ConnectedUser } from '../features/users/ConnectedUser';
-import { useChat } from '../hooks/chatHook';
 import { setUser } from '../features/users/userSlice';
 import { getStoredUser, storeUser }  from "../utilities/localStorageUtility";
 
@@ -16,7 +15,6 @@ export function ChatPage(props) {
     let user = useSelector(state => state.user.user);
     let storedUser = getStoredUser();
     
-    const { startChat, sendMessage, onIncomingMassage, onGetChatHistory } = useChat();
     
     if (storedUser) {
         user = storedUser;
@@ -31,11 +29,7 @@ export function ChatPage(props) {
         <ChatLayout headerTitle="Chat" headerSubTitle={user}>
             <Chat bg="default"
                 chatId={chatId}
-                user={user}
-                onStartChat={startChat}
-                onSendMessage={sendMessage}
-                onIncomingMassage={onIncomingMassage}
-                onGetChatHistory={onGetChatHistory} />
+                user={user} />
             <Modal title="Choose user" show={!user} hideCloseButton>
                 <ConnectedUser users={['alexei@example.com', 'liat@example.com']} onSelectUser={onSelectUser} />
             </Modal>
