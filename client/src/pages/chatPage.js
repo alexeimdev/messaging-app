@@ -5,13 +5,15 @@ import { useChat } from '../hooks/chatHook';
 
 export function ChatPage(props) {
 
-    const { sendMessage, onIncomingMassage } = useChat();
+    const { startChat, sendMessage, onIncomingMassage, onGetChatHistory } = useChat();
 
     return (
         <ChatLayout headerTitle="Chat">
             <Chat bg="default"
+                onStartChat={startChat}
                 onSendMessage={sendMessage}
-                onIncomingMassage={onIncomingMassage} />
+                onIncomingMassage={onIncomingMassage}
+                onGetChatHistory={onGetChatHistory} />
         </ChatLayout>
     )
 }

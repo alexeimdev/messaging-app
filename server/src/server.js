@@ -32,28 +32,95 @@ try {
 	throw error;
 }
 
+
+// get messages from DB
+const messages = [
+	{
+		date: "Yesterday",
+		messagesArr: [
+			{ time: "07:03", message: "Hi!", author: "alexei@example.com" },
+			{ time: "07:05", message: "How you doing?", author: "liat@example.com" },
+			{ time: "07:06", message: "I'm fine thanks. How are you?", author: "alexei@example.com" },
+			{ time: "07:10", message: "Execllent", author: "liat@example.com" },
+		]
+	},
+	{
+		date: "Today",
+		messagesArr: [
+			{ time: "07:03", message: "Hi!", author: "alexei@example.com" },
+			{ time: "07:05", message: "How you doing?", author: "liat@example.com" },
+			{ time: "07:06", message: "I'm fine thanks. How are you?", author: "alexei@example.com" },
+			{ time: "07:10", message: "Execllent", author: "liat@example.com" },
+		]
+	},
+];
+
 io.on('connection', (socket) => {
-	console.log('[server]', 'socket.io connection is made');
 
-	//user sending message
-	socket.on("sendMessage", ({ author, message }) => {
+	console.log('[server.ws.connection]', 'socket.io connection is made');
 
-		console.log('sendMessage', author, message);
+	socket.on("chat", ({ chatId }) => {
+		console.log('[server.ws.chat]', 'chatId', chatId);
+		socket.emit("chatHistory", messages);
+	});
 
-		//gets the room user and the message sent
-		//const p_user = get_Current_User(socket.id);
+	socket.on("message", ({ chatId, author, messageId, message }) => {
+		console.log('[server.ws.message]', 'chatId', chatId, 'author', author, 'messageId', messageId, 'message', message);
 
-		// io.to(p_user.room).emit("message", {
-		// 	userId: p_user.id,
-		// 	username: p_user.username,
-		// 	text: text,
-		// });
+		const now = new Date();
+		const currentHour = ("0" + now.getHours()).slice(-2);
+		const currentMinutes = ("0" + now.getMinutes()).slice(-2);
 
-		io.emit("newMessage", {
+		let todayMessages = messages?.find(x => x.date === "Today");
+
+		if (todayMessages) {
+			messages.find(x => x.date === "Today").messagesArr.push({
+				time: `${currentHour}:${currentMinutes}`,
+				author: author,
+				message: message,
+			});
+		}
+		else {
+			state.messages.push({
+				date: "Today",
+				messagesArr: [{
+					time: `${currentHour}:${currentMinutes}`,
+					author: author,
+					message: message,
+				}]
+			});
+		}
+
+		socket.broadcast("message", {
 			author: author,
 			message: message,
 		});
+		socket.emit("message", {
+			author: author,
+			message: message,
+		});
+
 	});
+
+	// //user sending message
+	// socket.on("sendMessage", ({ author, message }) => {
+
+	// 	console.log('sendMessage', author, message);
+
+	// 	//gets the room user and the message sent
+	// 	//const p_user = get_Current_User(socket.id);
+
+	// 	// io.to(p_user.room).emit("message", {
+	// 	// 	userId: p_user.id,
+	// 	// 	username: p_user.username,
+	// 	// 	text: text,
+	// 	// });
+
+	// 	io.emit("newMessage", {
+	// 		author: author,
+	// 		message: message,
+	// 	});
+	// });
 });
 
 server.listen(httpPort, () => {

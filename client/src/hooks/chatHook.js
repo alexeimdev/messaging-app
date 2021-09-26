@@ -15,9 +15,16 @@ export function useChat() {
         }
     }, [])
 
+    function startChat(chatId) {
+        console.log("startChat", 'chatId', chatId);
+        socket?.emit("chat", {
+            chatId: chatId,
+        });
+    }
+
     function sendMessage({ author, message }) {
-        console.log("sendMessage");
-        socket?.emit("sendMessage", {
+        console.log("sendMessage", 'author', author, 'message', message);
+        socket?.emit("message", {
             author: author,
             message: message,
         });
@@ -25,10 +32,17 @@ export function useChat() {
 
     function onIncomingMassage(action) {
         console.log("onIncomingMassage");
-        socket?.on("newMessage", (incomingMessage) => {
+        socket?.on("message", (incomingMessage) => {
+            console.log("on message", 'incomingMessage', incomingMessage);
             dispatch(action(incomingMessage));
         });
     }
 
-    return { sendMessage, onIncomingMassage };
+    function onGetChatHistory(action) {
+        socket?.on("chatHistory", (messages) => {
+            dispatch(action(messages));
+        });
+    }
+
+    return { startChat, sendMessage, onIncomingMassage, onGetChatHistory };
 }

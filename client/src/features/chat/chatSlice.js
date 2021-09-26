@@ -1,15 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    messages: [{
-        date: "Yesterday",
-        messagesArr: [
-            { time: "07:03", message: "Hi!", author: "alexei@example.com" },
-            { time: "07:05", message: "How you doing?", author: "liat@example.com" },
-            { time: "07:06", message: "I'm fine thanks. How are you?", author: "alexei@example.com" },
-            { time: "07:10", message: "Execllent", author: "liat@example.com" },
-        ]
-    }],
+    messages: [],
 }
 
 export const chatSlice = createSlice({
@@ -40,12 +32,16 @@ export const chatSlice = createSlice({
                     }]
                 });
             }
+        },
+        setMessages: (state, action) => {
+            state.messages = action.payload;
         }
     }
 })
 
 export const {
     addMessage,
+    setMessages,
 } = chatSlice.actions;
 
 export default chatSlice.reducer;

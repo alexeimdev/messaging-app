@@ -5,7 +5,7 @@ import { Messages } from "./Messages";
 import { MessageInput } from "./MessageInput";
 import { Modal } from "../../shared/components/Modal";
 import { ConnectedUser } from '../users/ConnectedUser';
-import { addMessage } from './chatSlice';
+import { addMessage, setMessages } from './chatSlice';
 
 export function Chat(props) {
 
@@ -13,8 +13,16 @@ export function Chat(props) {
     const messages = useSelector(state => state.chat.messages);
 
     useEffect(() => {
+        props.onStartChat("fakeChatId");
+    }, [props.onStartChat]);
+
+    useEffect(() => {
         props.onIncomingMassage(addMessage);
     }, [props.onIncomingMassage]);
+
+    useEffect(() => {
+        props.onGetChatHistory(setMessages);
+    }, [props.onGetChatHistory]);
 
     function createNewMessage(message) {
         props.onSendMessage({
