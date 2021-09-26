@@ -18,7 +18,7 @@ export function ChatPage(props) {
     console.log("chatId", chatId);
 
     return (
-        <ChatLayout headerTitle="Chat">
+        <ChatLayout headerTitle="Chat" headerSubTitle={user}>
             <Chat bg="default"
                 chatId={chatId}
                 user={user}
