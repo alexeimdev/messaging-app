@@ -44,15 +44,6 @@ const messages = [
 			{ time: "07:10", message: "Execllent", author: "liat@example.com" },
 		]
 	},
-	{
-		date: "Today",
-		messagesArr: [
-			{ time: "07:03", message: "Hi!", author: "alexei@example.com" },
-			{ time: "07:05", message: "How you doing?", author: "liat@example.com" },
-			{ time: "07:06", message: "I'm fine thanks. How are you?", author: "alexei@example.com" },
-			{ time: "07:10", message: "Execllent", author: "liat@example.com" },
-		]
-	},
 ];
 
 io.on('connection', (socket) => {
@@ -81,7 +72,7 @@ io.on('connection', (socket) => {
 			});
 		}
 		else {
-			state.messages.push({
+			messages.push({
 				date: "Today",
 				messagesArr: [{
 					time: `${currentHour}:${currentMinutes}`,
