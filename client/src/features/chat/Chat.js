@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './Chat.module.scss';
 import { Messages } from "./Messages";
 import { MessageInput } from "./MessageInput";
-import { Modal } from "../../shared/components/Modal";
-import { ConnectedUser } from '../users/ConnectedUser';
 import { addMessage, setMessages } from './chatSlice';
-import { setUser } from '../users/userSlice';
 
 export function Chat(props) {
 
-    const dispatch = useDispatch();
     const messages = useSelector(state => state.chat.messages);
-    const user = useSelector(state => state.user.user);
-
 
     useEffect(() => {
         props.onStartChat(props.chatId);
@@ -29,7 +23,7 @@ export function Chat(props) {
 
     function createNewMessage(message) {
         props.onSendMessage({
-            author: user,
+            author: props.user,
             message, 
         });
     }
@@ -39,11 +33,8 @@ export function Chat(props) {
             {props.bg === 'default' &&
                 <div className={styles.bg} />
             }
-            <Messages me={user} messages={messages} />
+            <Messages me={props.user} messages={messages} />
             <MessageInput onSubmit={createNewMessage} />
-            <Modal title="Choose user" show={!user} hideCloseButton>
-                <ConnectedUser users={['alexei@example.com', 'liat@example.com']} onSelectUser={(user) => dispatch(setUser(user))} />
-            </Modal>
         </div>
     )
 }
