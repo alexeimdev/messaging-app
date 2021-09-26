@@ -19,11 +19,16 @@
     .headerTitle {
         font-size: 1.5em;
         color: $white;
+
+        &.headerTitleShrink {
+            animation: header-title-shrink cubic-bezier(0, 0.93, 0.47, 1) 0.5s forwards;
+        }
     }
     
     .headerSubTitle {
         font-size: 1em;
         color: $white;
+        animation: header-subtitle-grow cubic-bezier(0, 0.93, 0.47, 1) 0.5s forwards;
     }
 }
 
@@ -33,4 +38,22 @@
 }
 
 .footer {
+}
+
+@keyframes header-subtitle-grow {
+    from {
+        height: 0;
+    }
+    to {
+        height: 1em;
+    }
+}
+
+@keyframes header-title-shrink {
+    from {
+        font-size: 1.5em;
+    }
+    to {
+        font-size: 1.2em;
+    }
 }
