@@ -9,6 +9,8 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 const api = require('./api');
+const Chat = require('./models/chat');
+const Message = require('./models/message');
 
 const httpPort = process.env.HTTP_PORT || 5000;
 const dbUri = process.env.MONGODB_CONNECTION || "mongodb+srv://alexeimdev:reason10@cluster0.dopsm.mongodb.net/messaging-app?retryWrites=true&w=majority";
@@ -34,7 +36,7 @@ try {
 
 
 // get messages from DB
-const messages = [
+const messages1 = [
 	{
 		date: "Yesterday",
 		messagesArr: [
@@ -46,11 +48,23 @@ const messages = [
 	},
 ];
 
-io.on('connection', (socket) => {
+let messages = [];
+
+io.on('connection', async (socket) => {
 
 	console.log('[server.ws.connection]', 'socket.io connection is made');
 
-	socket.on("chat", ({ chatId }) => {
+	socket.on("chat", async ({ chatId }) => {
+		const chatDoc = await Chat.find();
+		const messagesArrIds = chatDoc[0].messages;
+
+		const messagesArr = await Message.find().where('_id').in(messagesArrIds).exec();
+
+		messages = [{
+			date: "Today",
+			messagesArr: messagesArr,
+		}]
+
 		console.log('[server.ws.chat]', 'chatId', chatId);
 		socket.emit("chatHistory", messages);
 	});
