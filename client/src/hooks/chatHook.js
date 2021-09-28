@@ -12,7 +12,7 @@ export function useChat() {
             socketRef.current = io.connect();
         }
         // return () => { }
-    }, [socketRef.current])
+    }, [])
 
     function startChat(chatId) {
         console.log("startChat", 'chatId', chatId);
