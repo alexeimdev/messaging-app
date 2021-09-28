@@ -26,12 +26,12 @@ export function Messages(props) {
 
         for (const message of props.messages) {
             const messageDate = new Date(message.date);
-            const shortDate = (messageDate.toLocaleDateString() == now.toLocaleDateString())
+            const shortDate = (messageDate.toLocaleDateString() === now.toLocaleDateString())
                 ? "Today" : messageDate.toLocaleDateString();
 
-            const existingDate = groupedMessages?.find(group => group.date == shortDate)?.date;
+            const existingDate = groupedMessages?.find(group => group.date === shortDate)?.date;
             if (existingDate) {
-                groupedMessages.find(group => group.date == shortDate).messages.push(message);
+                groupedMessages.find(group => group.date === shortDate).messages.push(message);
             } 
             else {
                 groupedMessages.push({ date: shortDate, messages: [message] })
