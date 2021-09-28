@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const Message = mongoose.model("Message", {
-    "_id": mongoose.Types.ObjectId,
     "author": String,
     "recipients": [ String ],
     "message": String,
-    "date": Date
+    "date": { type: Date, default: Date.now }
 });
 
 module.exports = Message;

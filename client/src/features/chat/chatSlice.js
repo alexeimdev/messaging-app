@@ -13,25 +13,11 @@ export const chatSlice = createSlice({
             const currentHour = ("0" + now.getHours()).slice(-2);
             const currentMinutes = ("0" + now.getMinutes()).slice(-2);
 
-            let todayMessages = state?.messages?.find(x => x.date === "Today");
-
-            if (todayMessages) {
-                state.messages.find(x => x.date === "Today").messagesArr.push({
-                    time: `${currentHour}:${currentMinutes}`,
-                    author: action.payload.author,
-                    message: action.payload.message,
-                });
-            }
-            else {
-                state.messages.push({
-                    date: "Today",
-                    messagesArr: [{
-                        time: `${currentHour}:${currentMinutes}`,
-                        author: action.payload.author,
-                        message: action.payload.message,
-                    }]
-                });
-            }
+            state.messages.push({
+                time: `${currentHour}:${currentMinutes}`,
+                author: action.payload.author,
+                message: action.payload.message,
+            });
         },
         setMessages: (state, action) => {
             state.messages = action.payload;
