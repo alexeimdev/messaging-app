@@ -17,15 +17,16 @@ export function useChat() {
     function startChat(chatId) {
         console.log("startChat", 'chatId', chatId);
         socketRef.current?.emit("chat", {
-            chatId: chatId,
+            chatId,
         });
     }
 
-    function sendMessage({ author, message }) {
+    function sendMessage({ author, message, chatId }) {
         console.log("sendMessage", 'author', author, 'message', message);
         socketRef.current?.emit("message", {
-            author: author,
-            message: message,
+            author,
+            message,
+            chatId,
         });
     }
 

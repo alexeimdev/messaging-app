@@ -24,7 +24,8 @@ export function Chat(props) {
     function handleSubmitMessage(message) {
         sendMessage({
             author: props.user,
-            message, 
+            message,
+            chatId: props.chatId,
         });
     }
 

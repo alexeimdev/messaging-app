@@ -58,8 +58,8 @@ io.on('connection', async (socket) => {
 	socket.on("chat", async ({ chatId }) => {
 		console.log('[server.ws.chat]', 'chatId', chatId);
 
-		const chatDoc = await Chat.find();
-		const messagesIds = chatDoc[0].messages;
+		const chatDoc = await Chat.findById(chatId);
+		const messagesIds = chatDoc.messages;
 		const messages = await Message.find().where('_id').in(messagesIds).exec();
 
 		socket.emit("chat", messages);

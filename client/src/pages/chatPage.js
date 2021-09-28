@@ -8,7 +8,7 @@ import { ConnectedUser } from '../features/users/ConnectedUser';
 
 export function ChatPage(props) {
 
-    const chatId = useParams("id");
+    const { id: chatId} = useParams();
     const user = useSelector(state => state.user.user);
 
     return (
