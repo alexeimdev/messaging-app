@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStoredUser, storeUser } from '../../utilities/localStorageUtility';
+import { setUser } from './userSlice';
 import styles from './ConnectedUser.module.scss';
 
 export function ConnectedUser(props) {
 
+    const dispatch = useDispatch();
+
+    const userFromState = useSelector(state => state.user.user);
+    const userFromStorage = getStoredUser();
+
+    useEffect(() => {
+        if (userFromStorage && !userFromState) {
+            dispatch(setUser(userFromStorage))
+        }
+    }, [userFromState]);   
+
     function handleSelectUser(e) {
-        props.onSelectUser(e.target.value);
+        const selectedUser = e.target.value;
+        storeUser(selectedUser);
+        dispatch(setUser(selectedUser));
     }
 
     return (
