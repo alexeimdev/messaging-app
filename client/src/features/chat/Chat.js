@@ -8,7 +8,7 @@ import { useChat } from '../../hooks/chatHook';
 
 export function Chat(props) {
 
-    const { startChat, sendMessage, onIncomingMassage, onGetChatHistory } = useChat();
+    const { startChat, sendMessage, onIncomingMassage, onChatStarted } = useChat();
     const messages = useSelector(state => state.chat.messages);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export function Chat(props) {
         }
 
         onIncomingMassage(addMessage);
-        onGetChatHistory(setMessages);
+        onChatStarted(setMessages);
 
     }, [props.chatId]);
 

@@ -37,8 +37,8 @@ export function useChat() {
         });
     }
 
-    function onGetChatHistory(action) {
-        socketRef.current?.on("chatHistory", (messages) => {
+    function onChatStarted(action) {
+        socketRef.current?.on("chat", (messages) => {
             dispatch(action(messages));
         });
     }
@@ -47,7 +47,7 @@ export function useChat() {
         startChat,
         sendMessage,
         onIncomingMassage,
-        onGetChatHistory
+        onChatStarted,
     }
 
 }

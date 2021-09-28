@@ -62,7 +62,7 @@ io.on('connection', async (socket) => {
 		const messagesIds = chatDoc[0].messages;
 		const messages = await Message.find().where('_id').in(messagesIds).exec();
 
-		socket.emit("chatHistory", messages);
+		socket.emit("chat", messages);
 	});
 
 	socket.on("message", async ({ chatId, author, messageId, message }) => {
