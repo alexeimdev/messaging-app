@@ -12,10 +12,10 @@ export function ConnectedUser(props) {
     const userFromStorage = getStoredUser();
 
     useEffect(() => {
-        if (userFromStorage && !userFromState) {
+        if (props.save && userFromStorage && !userFromState) {
             dispatch(setUser(userFromStorage))
         }
-    }, [userFromState]);   
+    }, [props.save, userFromState]);   
 
     function handleSelectUser(e) {
         const selectedUser = e.target.value;
