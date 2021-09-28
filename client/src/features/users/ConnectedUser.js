@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStoredUser, storeUser } from '../../utilities/localStorageUtility';
 import { setUser } from './userSlice';

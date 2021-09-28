@@ -1,12 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ChatLayout } from '../layouts/chatLayout';
 import { Chat } from '../features/chat/Chat';
 import { Modal } from '../shared/components/Modal';
 import { ConnectedUser } from '../features/users/ConnectedUser';
-import { setUser } from '../features/users/userSlice';
-import { getStoredUser, storeUser }  from "../utilities/localStorageUtility";
 
 export function ChatPage(props) {
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Message } from './Message';
 import { Date as MessagesDate } from './Date';
 import styles from './Messages.module.scss';
