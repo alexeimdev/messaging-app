@@ -10,20 +10,8 @@ import { getStoredUser, storeUser }  from "../utilities/localStorageUtility";
 
 export function ChatPage(props) {
 
-    const dispatch = useDispatch();
     const chatId = useParams("id");
-    let user = useSelector(state => state.user.user);
-    let storedUser = getStoredUser();
-    
-    
-    if (storedUser) {
-        user = storedUser;
-    }
-
-    function onSelectUser(user) {
-        //storeUser(user);
-        dispatch(setUser(user));
-    }
+    const user = useSelector(state => state.user.user);
 
     return (
         <ChatLayout headerTitle="Chat" headerSubTitle={user}>
@@ -31,7 +19,7 @@ export function ChatPage(props) {
                 chatId={chatId}
                 user={user} />
             <Modal title="Choose user" show={!user} hideCloseButton>
-                <ConnectedUser users={['alexei@example.com', 'liat@example.com']} onSelectUser={onSelectUser} />
+                <ConnectedUser users={['alexei@example.com', 'liat@example.com']} />
             </Modal>
         </ChatLayout>
     )
